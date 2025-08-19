@@ -1,5 +1,8 @@
 import 'package:autolife/presantation/auth/sign_up/pages/enter_email_screen.dart';
+import 'package:autolife/presantation/blocs/home/home_bloc.dart';
+import 'package:autolife/presantation/pages/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
@@ -23,7 +26,10 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
-      child: EnterEmailScreen(),
+      child: BlocProvider(
+        create: (context)=> HomeBloc(),
+        child: HomePage(),
+      ),
     );
   }
 }

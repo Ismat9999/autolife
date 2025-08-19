@@ -1,7 +1,17 @@
-import 'package:autolife/presantation/widgets/items/item_of_recomended.dart';
+import 'package:autolife/core/theme/app_colors.dart';
+import 'package:autolife/presantation/blocs/home/home_bloc.dart';
+import 'package:autolife/presantation/blocs/home/home_state.dart';
+import 'package:autolife/presantation/blocs/main_bloc/main_bloc.dart';
+import 'package:autolife/presantation/blocs/search_bloc/search_bloc.dart';
+import 'package:autolife/presantation/blocs/upload_bloc/upload_bloc.dart';
+import 'package:autolife/presantation/pages/support_page/favorite_page.dart';
+import 'package:autolife/presantation/pages/support_page/main_page.dart';
+import 'package:autolife/presantation/pages/support_page/search_page.dart';
+import 'package:autolife/presantation/pages/support_page/upload_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../widgets/items/item_of_category.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,132 +21,91 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  PageController pageController = PageController();
+  late HomeBloc homeBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    homeBloc= context.read<HomeBloc>();
+  }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.blueGrey.shade800,
-      appBar: AppBar(
-        backgroundColor: Colors.blueGrey,
-        title: Text(
-          "AutoLife",
-          style: TextStyle(color: Colors.white, fontSize: 30),
-        ),
-      ),
-      body: Container(
-        padding: EdgeInsets.all(10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              height: 50,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: Colors.white24,
+    return BlocBuilder<HomeBloc, HomeState>(
+      builder: (context,state){
+        return Scaffold(
+          body: PageView(
+            onPageChanged: (index) {
+              homeBloc.onPageViewChange(index);
+            },
+            controller: pageController,
+            children: [
+              BlocProvider(
+                create: (context) => MainBloc(),
+                child: const MainPage(),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.search,
-                    size: 30,
-                    color: Colors.grey.shade400,
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    child: Container(
-                      padding: EdgeInsets.all(10),
-                      child: TextField(
-                        style: const TextStyle(color: Colors.white),
-                        decoration: InputDecoration(
-                          hintText: "Qidiruv",
-                          border: InputBorder.none,
-                          hintStyle: TextStyle(color: Colors.grey.shade400),
-                          suffixIcon: Icon(
-                            Icons.close,
-                            color: Colors.white,
-                          ),
-                        ),
-                        cursorColor: Colors.white,
-                      ),
-                    ),
-                  ),
-                ],
+              BlocProvider(
+                create: (context) => SearchBloc(),
+                child: const SearchPage(),
               ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-              padding: EdgeInsets.all(15),
-              width: MediaQuery.of(context).size.width,
-              height: 210,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: Colors.blueGrey,
+              BlocProvider(
+                create: (context) => UploadBloc(),
+                child: const UploadPage(),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Xush kelibsiz!",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "Barcha avtomobil xizmatlarini bir joyda toping",
-                    style: TextStyle(color: Colors.white24, fontSize: 22),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.white24,
-                    ),
-                    child: Center(
-                        child: Text(
-                      "Eng yaqin xizmatlarni ko'rish",
-                      style: TextStyle(
-                          color: Colors.grey.shade400, fontSize: 17),
-                    )),
-                  ),
-                ],
+              BlocProvider(
+                create: (context) => UploadBloc(),
+                child: const UploadPage(),
               ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              "Bo'limlar",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Center(
-              child: itemOfCategory(context),
-            ),
-            SizedBox(height: 10,),
-            Text("Rekomendatsiya",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),),
-            SizedBox(height: 10,),
-            itemOfRecomended(context),
-          ],
-        ),
-      ),
+              BlocProvider(
+                create: (context) => UploadBloc(),
+                child: const UploadPage(),
+              ),
+            ],
+          ),
+          bottomNavigationBar: CupertinoTabBar(
+            onTap: (index) {
+              homeBloc.onBottomChange(index);
+              pageController.animateToPage(index,
+                  duration: Duration(milliseconds: 200), curve: Curves.easeIn);
+            },
+            currentIndex: homeBloc.currentTap,
+            backgroundColor: AppColors.blackColor,
+            activeColor: AppColors.whiteColor,
+            items: [
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.home,
+                  size: 32,
+                ),
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.search,
+                  size: 32,
+                ),
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.add_box,
+                  size: 32,
+                ),
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.favorite,
+                  size: 32,
+                ),
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.person,
+                  size: 32,
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
