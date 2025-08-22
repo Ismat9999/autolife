@@ -29,15 +29,15 @@ class WPhoneInputText extends StatelessWidget {
           height: 56.h,
           padding: EdgeInsets.symmetric(horizontal: 16.w),
           decoration: BoxDecoration(
-              color: AppColors.whiteColor,
+              color: AppColors.mainColor,
               borderRadius: BorderRadius.circular(12.0.r)),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                "+998 ",
+                "+998  |",
                 style: TextStyle(
-                    color: AppColors.blackColor,
+                    color: AppColors.whiteColor,
                     fontWeight: FontWeight.bold,
                     fontSize: 16.spMin,
                     fontFamily: Constants.exo),
@@ -58,7 +58,7 @@ class WPhoneInputText extends StatelessWidget {
                   ),
                   style: TextStyle(
                       fontSize: 16.spMin,
-                      color: AppColors.blackColor,
+                      color: AppColors.whiteColor,
                       fontFamily: Constants.exo),
                 ),
               )

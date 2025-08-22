@@ -53,7 +53,7 @@ class _WBornDateInputTextState extends State<WBornDateInputText> {
           padding: EdgeInsets.symmetric(horizontal: 16.w),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12.r),
-            color: AppColors.whiteColor,
+            color: AppColors.mainColor,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -72,7 +72,7 @@ class _WBornDateInputTextState extends State<WBornDateInputText> {
                   onChanged: widget.onChanged,
                   style: TextStyle(
                     fontSize: 16.spMin,
-                    color: AppColors.blackColor,
+                    color: AppColors.whiteColor,
                   ),
                 ),
               ),
@@ -80,7 +80,7 @@ class _WBornDateInputTextState extends State<WBornDateInputText> {
                 onPressed: _selectDate,
                 icon: const Icon(
                   Icons.calendar_month,
-                  color: AppColors.mainColor,
+                  color: AppColors.blueColor,
                 ),
               )
             ],

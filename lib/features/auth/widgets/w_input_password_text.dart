@@ -30,7 +30,7 @@ class _WInputPasswordTextState extends State<WInputPasswordText> {
           padding: EdgeInsets.symmetric(horizontal: 16.0.w),
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            color: AppColors.whiteColor,
+            color: AppColors.mainColor,
             borderRadius: BorderRadius.circular(12.0),
           ),
           child: Row(
@@ -51,7 +51,7 @@ class _WInputPasswordTextState extends State<WInputPasswordText> {
                         fontFamily: Constants.exo),
                   ),
                   style: TextStyle(
-                      color: AppColors.blackColor,
+                      color: AppColors.whiteColor,
                       fontSize: 16.spMin,
                       fontFamily: Constants.exo),
                 ),
@@ -64,7 +64,7 @@ class _WInputPasswordTextState extends State<WInputPasswordText> {
                   },
                   icon: Icon(
                     isVisible ? Icons.visibility_off : Icons.visibility,
-                    color: AppColors.mainColor,
+                    color: AppColors.blueColor,
                   ))
             ],
           ),
