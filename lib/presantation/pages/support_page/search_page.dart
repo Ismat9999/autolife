@@ -13,48 +13,67 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(35, 45, 75, 1),
+      backgroundColor: Colors.black,
       body: Stack(
         children:[
           Container(
-            padding: EdgeInsets.all(10),
+            width: MediaQuery.of(context).size.width,
             child: Column(
-            children: [
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                height: 50,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white24,
-                  border: Border.all(width: 1,color: Colors.black54),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: Container(
-                        padding: EdgeInsets.all(10),
-                        child: TextField(
-                          style: const TextStyle(color: Colors.white),
-                          decoration: InputDecoration(
-                            border:InputBorder.none,
-                            icon: Icon(EvaIcons.search,size: 32,color: Colors.blueGrey.shade800,),
-                            hintText: 'Qidiruv',
-                            hintStyle: TextStyle(color: Colors.white24),
-                            suffixIcon: Icon(
-                              EvaIcons.close,
-                              color: Colors.blueGrey.shade800,
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  padding: EdgeInsets.only(top: 10,left: 5,right: 5),
+                  child: Column(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        height: 50,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: Color.fromRGBO(35, 45, 75, 1),
+                          border: Border.all(width: 1,color: Colors.black54),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: Container(
+                                padding: EdgeInsets.all(10),
+                                child: TextField(
+                                  style: const TextStyle(color: Colors.white),
+                                  decoration: InputDecoration(
+                                    border:InputBorder.none,
+                                    icon: Icon(EvaIcons.search,size: 25,color:Colors.white),
+                                    hintText: 'Qidiruv',
+                                    hintStyle: TextStyle(color: Colors.white24),
+                                    suffixIcon: Icon(
+                                      EvaIcons.close,
+                                      color: Colors.white24,
+                                    ),
+                                  ),
+                                  cursorColor: Colors.grey.shade400,
+                                ),
+                              ),
                             ),
-                          ),
-                          cursorColor: Colors.grey.shade400,
+                          ],
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+                SizedBox(height: 10,),
+                Expanded(
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    margin: EdgeInsets.symmetric(horizontal: 10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(topRight:Radius.circular(10),topLeft:Radius.circular(10)),
+                      color: Colors.white,
                     ),
+                  ),
+                ),
+              ],
+            ),
           ),
     ]
       ),

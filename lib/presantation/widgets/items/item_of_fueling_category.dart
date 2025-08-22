@@ -20,7 +20,7 @@ Widget itemOfFuelingCategory(BuildContext context){
           Icon(LucideIcons.fuel, color: Colors.yellow, size: 20),
           SizedBox(width: 8),
           Text(
-            "Yoqilg\'i Shaxobchasi",
+            "Benzin Shaxobchasi",
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,

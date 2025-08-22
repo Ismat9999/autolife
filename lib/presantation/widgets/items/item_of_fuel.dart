@@ -21,16 +21,8 @@ Widget itemOfFuel(BuildContext context,int index) {
     child: Container(
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white24,
+        color: Color.fromRGBO(35, 45, 75, 1),
         borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
-            blurRadius: 10,
-            spreadRadius: 2,
-            offset: Offset(0, 3),
-          ),
-        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

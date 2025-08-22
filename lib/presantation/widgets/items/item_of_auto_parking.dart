@@ -16,7 +16,7 @@ Widget itemOfParking(BuildContext context,int index) {
       margin: EdgeInsets.only(bottom: 12),
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white24,
+        color: Color.fromRGBO(35, 45, 75, 1),
         borderRadius: BorderRadius.circular(16),
         border: Border(
           left: BorderSide(color: colors[index], width: 4),

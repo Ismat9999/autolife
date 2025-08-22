@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
       builder: (context,state){
         return Scaffold(
           appBar: AppBar(
-            backgroundColor: AppColors.blackColor,
+            backgroundColor: Colors.black,
             title: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -94,7 +94,7 @@ class _HomePageState extends State<HomePage> {
                 activeIcon: Icon(EvaIcons.home),
                 icon: Icon(
                   EvaIcons.homeOutline,
-                  size: 32,
+                  size: 25,
                 ),
               ),
               BottomNavigationBarItem(
@@ -102,7 +102,7 @@ class _HomePageState extends State<HomePage> {
                 activeIcon: Icon(EvaIcons.search),
                 icon: Icon(
                   EvaIcons.searchOutline,
-                  size: 32,
+                  size: 25,
                 ),
               ),
               BottomNavigationBarItem(
@@ -110,7 +110,7 @@ class _HomePageState extends State<HomePage> {
                 activeIcon: Icon(LucideIcons.navigation),
                 icon: Icon(
                   LucideIcons.navigation_2_off,
-                  size: 32,
+                  size: 25,
                 ),
               ),
               BottomNavigationBarItem(
@@ -118,7 +118,7 @@ class _HomePageState extends State<HomePage> {
                 activeIcon: Icon(EvaIcons.person),
                 icon: Icon(
                   EvaIcons.personOutline,
-                  size: 32,
+                  size: 25,
                 ),
               ),
             ],

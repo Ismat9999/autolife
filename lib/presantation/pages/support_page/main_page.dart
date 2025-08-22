@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:autolife/core/constants/constants.dart';
 import 'package:autolife/domain/model/auto_service_model.dart';
 import 'package:autolife/presantation/widgets/items/item_of_auto_category.dart';
 import 'package:autolife/presantation/widgets/items/item_of_auto_parking.dart';
@@ -69,7 +70,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor:
-        Color.fromRGBO(35, 45, 75, 1),
+        Colors.black,
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
