@@ -3,8 +3,10 @@ import 'package:autolife/core/theme/app_colors.dart';
 import 'package:autolife/presantation/blocs/home/home_bloc.dart';
 import 'package:autolife/presantation/blocs/home/home_state.dart';
 import 'package:autolife/presantation/blocs/main_bloc/main_bloc.dart';
+import 'package:autolife/presantation/blocs/navigator_bloc/navigator_bloc.dart';
 import 'package:autolife/presantation/blocs/search_bloc/search_bloc.dart';
 import 'package:autolife/presantation/pages/support_page/main_page.dart';
+import 'package:autolife/presantation/pages/support_page/navigator_page.dart';
 import 'package:autolife/presantation/pages/support_page/search_page.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
@@ -70,8 +72,8 @@ class _HomePageState extends State<HomePage> {
                 child: const SearchPage(),
               ),
               BlocProvider(
-                create: (context) => SearchBloc(),
-                child: const SearchPage(),
+                create: (context) => NavigatorBloc(),
+                child: const NavigatorPage(),
               ),
               BlocProvider(
                 create: (context) => SearchBloc(),
