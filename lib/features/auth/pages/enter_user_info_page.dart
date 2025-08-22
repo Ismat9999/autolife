@@ -1,15 +1,15 @@
 import 'package:autolife/core/theme/app_colors.dart';
 import 'package:autolife/core/utils/sized_boxes.dart';
-import 'package:autolife/presantation/auth/sign_up/widgets/w_born_date_input_text.dart';
-import 'package:autolife/presantation/auth/sign_up/widgets/w_input_password_text.dart';
-import 'package:autolife/presantation/auth/sign_up/widgets/w_input_text.dart';
-import 'package:autolife/presantation/auth/sign_up/widgets/w_loading_button.dart';
-import 'package:autolife/presantation/auth/sign_up/widgets/w_phone_input_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 import '../../../../core/constants/constants.dart';
+import '../widgets/w_born_date_input_text.dart';
+import '../widgets/w_input_password_text.dart';
+import '../widgets/w_input_text.dart';
+import '../widgets/w_loading_button.dart';
+import '../widgets/w_phone_input_text.dart';
 
 class EnterUserInfoPage extends StatefulWidget {
   final String email;
@@ -113,7 +113,7 @@ class _EnterUserInfoPageState extends State<EnterUserInfoPage> {
                   Text(
                     "Barcha maydonlarni to'ldiring",
                     style: TextStyle(
-                      color: AppColors.blackColor,
+                      color: AppColors.whiteColor,
                       fontSize: 18.spMin,
                       fontFamily: Constants.exo,
                       fontWeight: FontWeight.bold,
@@ -139,13 +139,13 @@ class _EnterUserInfoPageState extends State<EnterUserInfoPage> {
                     padding: EdgeInsets.symmetric(horizontal: 16.0.w),
                     alignment: Alignment.centerLeft,
                     decoration: BoxDecoration(
-                      color: AppColors.whiteColor,
+                      color: AppColors.mainColor,
                       borderRadius: BorderRadius.circular(12.0),
                     ),
                     child: Text(
                       widget.email,
                       style: TextStyle(
-                        color: AppColors.blackColor,
+                        color: AppColors.whiteColor,
                         fontSize: 16.spMin,
                         fontFamily: Constants.exo,
                       ),
@@ -165,7 +165,8 @@ class _EnterUserInfoPageState extends State<EnterUserInfoPage> {
               ),
             ),
             WLoadingButton(
-              onPressed: () {},
+              onPressed: () {
+              },
               buttonTitle: "Ro'yxatdan o'tish",
               isPressed: _isPressed(),
             ),

@@ -27,7 +27,7 @@ class WInputText extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 16.0.w),
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            color: AppColors.whiteColor,
+            color: AppColors.mainColor,
             borderRadius: BorderRadius.circular(12.0),
           ),
           child: TextField(
@@ -43,7 +43,7 @@ class WInputText extends StatelessWidget {
                   fontFamily: Constants.exo),
             ),
             style: TextStyle(
-                color: AppColors.blackColor,
+                color: AppColors.whiteColor,
                 fontSize: 16.spMin,
                 fontFamily: Constants.exo),
           ),

@@ -23,9 +23,9 @@ class WLoadingButton extends StatelessWidget {
         onPressed: isPressed ? onPressed : null,
         style: ElevatedButton.styleFrom(
           backgroundColor:
-              isPressed ? AppColors.mainColor : AppColors.grayColor,
+              isPressed ? AppColors.blueColor : AppColors.mainColor,
           foregroundColor:
-              isPressed ? AppColors.whiteColor : AppColors.blackColor,
+              isPressed ? AppColors.whiteColor : AppColors.grayColor,
           padding: const EdgeInsets.symmetric(
             horizontal: 30,
             vertical: 15,

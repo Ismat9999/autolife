@@ -2,11 +2,12 @@ import 'package:autolife/core/constants/constants.dart';
 import 'package:autolife/core/extensions/padding_extension.dart';
 import 'package:autolife/core/theme/app_colors.dart';
 import 'package:autolife/core/utils/sized_boxes.dart';
-import 'package:autolife/presantation/auth/sign_up/pages/enter_confirm_password_page.dart';
-import 'package:autolife/presantation/auth/sign_up/widgets/w_input_text.dart';
-import 'package:autolife/presantation/auth/sign_up/widgets/w_loading_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../widgets/w_input_text.dart';
+import '../widgets/w_loading_button.dart';
+import 'enter_confirm_password_page.dart';
 
 class EnterEmailScreen extends StatefulWidget {
   const EnterEmailScreen({super.key});
@@ -63,7 +64,7 @@ class _EnterEmailScreenState extends State<EnterEmailScreen> {
               Text(
                 "Emailni kiriting",
                 style: TextStyle(
-                    color: AppColors.blackColor,
+                    color: AppColors.whiteColor,
                     fontSize: 24.spMin,
                     fontFamily: Constants.exo,
                     fontWeight: FontWeight.bold),
@@ -99,7 +100,7 @@ class _EnterEmailScreenState extends State<EnterEmailScreen> {
                   Text(
                     "Agar sizda hisob bo'lsa?",
                     style: TextStyle(
-                        color: AppColors.blackColor,
+                        color: AppColors.whiteColor,
                         fontSize: 14.spMin,
                         fontFamily: Constants.exo),
                   ),
@@ -108,7 +109,7 @@ class _EnterEmailScreenState extends State<EnterEmailScreen> {
                       child: Text(
                         "Kirish",
                         style: TextStyle(
-                            color: AppColors.mainColor,
+                            color: AppColors.blueColor,
                             fontSize: 14.spMin,
                             fontFamily: Constants.exo),
                       ))

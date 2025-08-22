@@ -1,13 +1,13 @@
 import 'dart:async';
 
 import 'package:autolife/core/constants/constants.dart';
-import 'package:autolife/core/extensions/padding_extension.dart';
 import 'package:autolife/core/theme/app_colors.dart';
 import 'package:autolife/core/utils/sized_boxes.dart';
-import 'package:autolife/presantation/auth/sign_up/pages/enter_user_info_page.dart';
-import 'package:autolife/presantation/auth/sign_up/widgets/w_loading_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../widgets/w_loading_button.dart';
+import 'enter_user_info_page.dart';
 
 class EnterConfirmPasswordPage extends StatefulWidget {
   final String email;
@@ -78,7 +78,7 @@ class _EnterConfirmPasswordPageState extends State<EnterConfirmPasswordPage> {
             keyboardType: TextInputType.number,
             maxLength: 1,
             style: TextStyle(
-                color: AppColors.blackColor,
+                color: AppColors.whiteColor,
                 fontSize: 14.spMin,
                 fontFamily: Constants.exo,
                 fontWeight: FontWeight.bold),
@@ -92,7 +92,7 @@ class _EnterConfirmPasswordPageState extends State<EnterConfirmPasswordPage> {
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
                 borderSide: const BorderSide(
-                  color: AppColors.mainColor,
+                  color: AppColors.blueColor,
                   width: 2,
                 ),
               ),
@@ -154,7 +154,7 @@ class _EnterConfirmPasswordPageState extends State<EnterConfirmPasswordPage> {
                     child: Text(
                       "Orqaga",
                       style: TextStyle(
-                          color: AppColors.mainColor,
+                          color: AppColors.blueColor,
                           fontSize: 16.spMin,
                           fontFamily: Constants.exo,
                           fontWeight: FontWeight.bold),
@@ -165,21 +165,12 @@ class _EnterConfirmPasswordPageState extends State<EnterConfirmPasswordPage> {
                 Column(
                   children: [
                     Text(
-                      textAlign: TextAlign.center,
-                      "Quyidagi email pochtaga tasdiqlash kodi yuborilni. Pochtangizga o'ting va tasdiqlash kodini bu yerga kiriting",
+                      textAlign: TextAlign.start,
+                      "${maskEmail(widget.email)}  Quyidagi email pochtaga tasdiqlash kodi yuborilni. Pochtangizga o'ting va tasdiqlash kodini bu yerga kiriting",
                       style: TextStyle(
-                          color: AppColors.blackColor,
+                          color: AppColors.whiteColor,
                           fontSize: 14.spMin,
                           fontFamily: Constants.exo),
-                    ),
-                    Text(
-                      maskEmail(widget.email),
-                      style: TextStyle(
-                        fontSize: 16.spMin,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.blackColor,
-                        fontFamily: Constants.exo,
-                      ),
                     ),
                   ],
                 ),
@@ -196,14 +187,14 @@ class _EnterConfirmPasswordPageState extends State<EnterConfirmPasswordPage> {
                       ? const Text(
                           "Kodni qayta olish uchun bosing",
                           style: TextStyle(
-                              color: AppColors.mainColor,
+                              color: AppColors.blueColor,
                               fontFamily: Constants.exo,
                               fontWeight: FontWeight.bold),
                         )
                       : Text(
                           "Kodni qayta olish $_timeText",
                           style: const TextStyle(
-                            color: AppColors.grayColor,
+                            color: AppColors.whiteColor,
                             fontFamily: Constants.exo,
                           ),
                         ),
@@ -235,15 +226,10 @@ class _EnterConfirmPasswordPageState extends State<EnterConfirmPasswordPage> {
     final name = parts[0];
     final domain = parts[1];
 
-    if (name.length <= 3) {
-      return '${name[0]}***@$domain';
-    }
-
     final start = name.substring(0, 2);
     final end = name.substring(name.length - 1);
-    final masked = '*' * (name.length - 3);
 
-    return '$start$masked$end@$domain'.toLowerCase();
+    return "$start ****** $end@$domain".toLowerCase();
   }
 
   String getCodeFromFields() {

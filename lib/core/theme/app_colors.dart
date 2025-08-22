@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const mainColor = Color.fromRGBO(35, 45, 75, 1);
+  static const mainColor = Color(0xFF201C56);
   static const screenColor = Color(0xFFDBDBEB);
   static const whiteColor = Color(0xFFFFFFFF);
   static const grayColor = Color(0xFF808080);
@@ -30,4 +30,5 @@ class AppColors {
   static const orange = Color(0xFFFFC8A2);
   static const sky = Color(0xFFABDEE6);
   static const blue = Color(0xFF509BE4);
+  static const blueColor = Color(0xFF13217D);
 }
