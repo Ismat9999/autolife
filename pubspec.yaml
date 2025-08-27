@@ -21,6 +21,7 @@ dependencies:
   flutter_lucide: ^1.6.2
 #  Mapkarta
   yandex_mapkit: ^4.1.0
+  geolocator: ^14.0.2
 
 dev_dependencies:
   flutter_test:

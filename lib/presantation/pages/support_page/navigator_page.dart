@@ -1,4 +1,6 @@
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 import '../../../core/theme/app_colors.dart';
@@ -12,7 +14,6 @@ class NavigatorPage extends StatefulWidget {
 
 class _NavigatorPageState extends State<NavigatorPage> {
   late YandexMapController controller;
-  final List<MapObject> mapObjects = [];
 
   @override
   void initState() {
@@ -24,26 +25,6 @@ class _NavigatorPageState extends State<NavigatorPage> {
       {"lat": 41.3150, "lng": 69.2700, "price": "8200 UZS"},
       {"lat": 41.3000, "lng": 69.2500, "price": "8300 UZS"},
     ];
-
-    for (var s in stations) {
-      mapObjects.add(
-        PlacemarkMapObject(
-          mapId: MapObjectId("station_${s['lat']}"),
-          point: Point(latitude: s["lat"] as double, longitude: s["lng"] as double),
-          icon: PlacemarkIcon.single(
-            PlacemarkIconStyle(
-              image: BitmapDescriptor.fromAssetImage("assets/fuel.png"), // yonilg'i ikonka
-              scale: 0.08,
-            ),
-          ),
-          onTap: (self, point) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text("Narxi: ${s['price']}")),
-            );
-          },
-        ),
-      );
-    }
   }
 
   @override
@@ -51,94 +32,133 @@ class _NavigatorPageState extends State<NavigatorPage> {
     return Scaffold(
       body: Stack(
         children: [
-          /// Karta
-          YandexMap(
-            onMapCreated: (YandexMapController yController) async {
-              controller = yController;
-              await controller.moveCamera(
-                CameraUpdate.newCameraPosition(
-                  const CameraPosition(
-                    target: Point(latitude: 41.3111, longitude: 69.2797),
-                    zoom: 12,
+          Container(
+            padding: EdgeInsets.all(2),
+            color: Colors.black,
+            child: YandexMap(
+              onMapCreated: (YandexMapController yController) async {
+                controller = yController;
+                await controller.moveCamera(
+                  CameraUpdate.newCameraPosition(
+                    const CameraPosition(
+                      target: Point(latitude: 41.3111, longitude: 69.2797),
+                      zoom: 12,
+                    ),
                   ),
+                );
+              },
+            ),
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      margin: EdgeInsets.only(top: 8, left: 8, right: 8),
+                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      height: 50,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        color: Colors.black12,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black38,
+                            blurRadius: 8,
+                          ),
+                        ],
+                        border: Border.all(width: 2, color: Colors.grey),
+                      ),
+                      child: TextField(
+                        style: const TextStyle(color: Colors.white),
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          icon: Icon(EvaIcons.search,
+                              size: 25, color: Colors.white),
+                          hintStyle: TextStyle(color: Colors.white24),
+                          suffixIcon: Icon(
+                            EvaIcons.close,
+                            color: Colors.white24,
+                          ),
+                        ),
+                        cursorColor: Colors.grey.shade400,
+                      ),
+                    ),
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Container(
+                            width: 80,
+                            height: 40,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.red,
+                            ),
+                            child: Center(child: Text("Filtr")),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-              );
-            },
-            mapObjects: mapObjects,
-          ),
-
-          /// Bottom panel
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black26,
-                    blurRadius: 8,
-                    offset: Offset(0, -2),
-                  ),
-                ],
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: const [
-                      Icon(Icons.local_gas_station, color: Colors.blue),
-                      SizedBox(height: 4),
-                      Text("Шахобча"),
-                    ],
-                  ),
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: const [
-                      Icon(Icons.star, color: Colors.orange),
-                      SizedBox(height: 4),
-                      Text("Service"),
-                    ],
-                  ),
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: const [
-                      Icon(Icons.menu, color: Colors.black),
-                      SizedBox(height: 4),
-                      Text("Меню"),
-                    ],
-                  ),
-                ],
+              Container(
+                width: MediaQuery.of(context).size.width,
+                margin: EdgeInsets.only(right: 8, left: 8, bottom: 8),
+                height: 60,
+                decoration: BoxDecoration(
+                  color: Colors.blueGrey,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 8,
+                    ),
+                  ],
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        LucideIcons.wrench,
+                        color: Colors.white,
+                        size: 32,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        LucideIcons.fuel,
+                        color: Colors.white,
+                        size: 32,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        LucideIcons.circle_parking,
+                        color: Colors.white,
+                        size: 32,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        LucideIcons.settings,
+                        color: Colors.white,
+                        size: 32,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ),
-
-          /// Chap pastki filter (masalan, AI-80)
-          Positioned(
-            left: 16,
-            bottom: 90,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Colors.black26,
-                    blurRadius: 4,
-                  ),
-                ],
-              ),
-              child: Row(
-                children: const [
-                  Icon(Icons.local_gas_station, color: Colors.blue, size: 20),
-                  SizedBox(width: 6),
-                  Text("AI-80"),
-                ],
-              ),
-            ),
+            ],
           ),
         ],
       ),
