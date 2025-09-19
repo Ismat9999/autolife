@@ -3,6 +3,7 @@ import 'package:autolife/core/theme/app_colors.dart';
 import 'package:autolife/features/profile/pages/profile_page.dart';
 import 'package:autolife/presantation/blocs/home/home_bloc.dart';
 import 'package:autolife/presantation/blocs/home/home_state.dart';
+import 'package:autolife/presantation/blocs/main_bloc/auto_scrool_bloc.dart';
 import 'package:autolife/presantation/blocs/main_bloc/main_bloc.dart';
 import 'package:autolife/presantation/blocs/navigator_bloc/navigator_bloc.dart';
 import 'package:autolife/presantation/blocs/search_bloc/search_bloc.dart';
@@ -60,9 +61,19 @@ class _HomePageState extends State<HomePage> {
           ),
           body:   PageView(
             controller: pageController,
-            physics: NeverScrollableScrollPhysics(), // faqat bottom nav orqali boshqariladi
+            physics: NeverScrollableScrollPhysics(),
             children: [
-              BlocProvider(create: (context)=>MainBloc(),child: MainPage(),),
+              MultiBlocProvider(
+                providers: [
+                  BlocProvider(
+                    create: (context) => MainBloc(),
+                  ),
+                  BlocProvider(
+                    create: (context) => AutoScrollBloc(),
+                  ),
+                ],
+                child: MainPage(),
+              ),
               BlocProvider(create: (context)=>SearchBloc(),child: SearchPage(),),
               BlocProvider(create: (context)=>NavigatorBloc(),child: NavigatorPage(),),
               // BlocProvider(create: (context)=>Profile(),child: MainPage(),),
