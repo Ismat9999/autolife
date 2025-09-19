@@ -7,9 +7,11 @@ class MainBloc extends Bloc<MainEvent, MainState> {
   bool isLoading = false;
   PageController pageController = PageController();
 
+
   MainBloc() : super(MainInitialState()) {
     on<LoadMainPostsEvent>(_onLoadMainPostsEvent);
   }
   Future<void>_onLoadMainPostsEvent(LoadMainPostsEvent event, Emitter <MainState> emit)async{
   }
+
 }
