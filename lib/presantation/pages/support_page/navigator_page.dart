@@ -1,9 +1,10 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_lucide/flutter_lucide.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
-import '../../../core/theme/app_colors.dart';
+import '../../widgets/items/item_of_navigator_filtr.dart';
+
 
 class NavigatorPage extends StatefulWidget {
   const NavigatorPage({super.key});
@@ -13,7 +14,7 @@ class NavigatorPage extends StatefulWidget {
 }
 
 class _NavigatorPageState extends State<NavigatorPage> {
-  late YandexMapController controller;
+  late YandexMapController ycontroller;
 
   @override
   void initState() {
@@ -27,141 +28,96 @@ class _NavigatorPageState extends State<NavigatorPage> {
     ];
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
           Container(
+            width: MediaQuery.of(context).size.width,
             padding: EdgeInsets.all(2),
             color: Colors.black,
             child: YandexMap(
-              onMapCreated: (YandexMapController yController) async {
-                controller = yController;
-                await controller.moveCamera(
-                  CameraUpdate.newCameraPosition(
-                    const CameraPosition(
-                      target: Point(latitude: 41.3111, longitude: 69.2797),
-                      zoom: 12,
-                    ),
-                  ),
-                );
+              onMapCreated: (controller) {
+                ycontroller = controller;
+                ycontroller.moveCamera(CameraUpdate.newCameraPosition(CameraPosition(target: Point(latitude: 41.317772,  longitude: 69.230465),zoom: 12)));
               },
+              // onUserLocationAdded: (view) async {
+              //   return view.copyWith(
+              //     pin: view.pin.copyWith(
+              //       icon: PlacemarkIcon.single(
+              //         PlacemarkIconStyle(
+              //           image:BitmapDescriptor.fromAssetImage(
+              //               "assets/images/locuser.png"),
+              //         ),
+              //       ),
+              //     ),
+              //   );
+              // },
             ),
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      margin: EdgeInsets.only(top: 8, left: 8, right: 8),
-                      padding: EdgeInsets.symmetric(horizontal: 15),
-                      height: 50,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25),
-                        color: Colors.black12,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black38,
-                            blurRadius: 8,
-                          ),
-                        ],
-                        border: Border.all(width: 2, color: Colors.grey),
-                      ),
-                      child: TextField(
-                        style: const TextStyle(color: Colors.white),
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          icon: Icon(EvaIcons.search,
-                              size: 25, color: Colors.white),
-                          hintStyle: TextStyle(color: Colors.white24),
-                          suffixIcon: Icon(
-                            EvaIcons.close,
-                            color: Colors.white24,
-                          ),
-                        ),
-                        cursorColor: Colors.grey.shade400,
-                      ),
-                    ),
-                    Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Container(
-                            width: 80,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.red,
-                            ),
-                            child: Center(child: Text("Filtr")),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                margin: EdgeInsets.only(right: 8, left: 8, bottom: 8),
-                height: 60,
-                decoration: BoxDecoration(
-                  color: Colors.blueGrey,
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 8,
-                    ),
-                  ],
-                ),
-                child: Row(
+          Container(
+            padding: EdgeInsets.only(bottom: 20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        LucideIcons.wrench,
-                        color: Colors.white,
-                        size: 32,
+                    GestureDetector(
+                      onTap: (){
+                        itemOfNavigatorFiltr(context);
+                      },
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        width: 80,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.grey.shade300,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Icon(Icons.list),
+                            Text("Filtr"),
+                          ],
+                        ),
                       ),
                     ),
                     IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        LucideIcons.fuel,
-                        color: Colors.white,
-                        size: 32,
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        LucideIcons.circle_parking,
-                        color: Colors.white,
-                        size: 32,
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        LucideIcons.settings,
-                        color: Colors.white,
-                        size: 32,
-                      ),
-                    ),
+                        onPressed: () async {
+                          LocationPermission permission =
+                              await Geolocator.checkPermission();
+                          if (permission == LocationPermission.denied) {
+                            Geolocator.requestPermission();
+                          } else if (permission ==
+                              LocationPermission.deniedForever) {
+                            Geolocator.openAppSettings();
+                          }
+                          CameraPosition? userPosition=  await ycontroller.getUserCameraPosition();
+                          if(userPosition != null) {
+                            ycontroller.moveCamera(
+                                CameraUpdate.newCameraPosition(
+                                    userPosition!));
+                          }
+                          await ycontroller.moveCamera(CameraUpdate.zoomTo(16));
+                          await ycontroller.toggleUserLayer(
+                              visible: true, autoZoomEnabled: true);
+                        },
+                        icon: Icon(
+                          EvaIcons.navigation,
+                          size: 25,
+                          color: Colors.amber,
+                        )),
                   ],
                 ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
+    ]
+    ),
+    ),
+    ],
+            ),
+          );
   }
 }

@@ -67,7 +67,7 @@ class _SearchPageState extends State<SearchPage> {
                     margin: EdgeInsets.symmetric(horizontal: 10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(topRight:Radius.circular(10),topLeft:Radius.circular(10)),
-                      color: Colors.white,
+                      color: Color.fromRGBO(35, 45, 75, 1),
                     ),
                   ),
                 ),

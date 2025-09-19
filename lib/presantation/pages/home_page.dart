@@ -1,10 +1,8 @@
-import 'package:autolife/core/constants/constants.dart';
+
 import 'package:autolife/core/theme/app_colors.dart';
+import 'package:autolife/features/profile/pages/profile_page.dart';
 import 'package:autolife/presantation/blocs/home/home_bloc.dart';
 import 'package:autolife/presantation/blocs/home/home_state.dart';
-import 'package:autolife/presantation/blocs/main_bloc/main_bloc.dart';
-import 'package:autolife/presantation/blocs/navigator_bloc/navigator_bloc.dart';
-import 'package:autolife/presantation/blocs/search_bloc/search_bloc.dart';
 import 'package:autolife/presantation/pages/support_page/main_page.dart';
 import 'package:autolife/presantation/pages/support_page/navigator_page.dart';
 import 'package:autolife/presantation/pages/support_page/search_page.dart';
@@ -57,28 +55,14 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
-          body: PageView(
-            onPageChanged: (index) {
-              homeBloc.onPageViewChange(index);
-            },
+          body:   PageView(
             controller: pageController,
+            physics: NeverScrollableScrollPhysics(), // faqat bottom nav orqali boshqariladi
             children: [
-              BlocProvider(
-                create: (context) => MainBloc(),
-                child: const MainPage(),
-              ),
-              BlocProvider(
-                create: (context) => SearchBloc(),
-                child: const SearchPage(),
-              ),
-              BlocProvider(
-                create: (context) => NavigatorBloc(),
-                child: const NavigatorPage(),
-              ),
-              BlocProvider(
-                create: (context) => SearchBloc(),
-                child: const SearchPage(),
-              ),
+              MainPage(),
+              SearchPage(),
+              NavigatorPage(),
+              ProfilePage(),
             ],
           ),
           bottomNavigationBar: CupertinoTabBar(
