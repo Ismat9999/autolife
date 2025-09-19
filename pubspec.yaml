@@ -23,6 +23,8 @@ dependencies:
   yandex_mapkit: ^4.1.0
   geolocator: ^14.0.2
 
+  cached_network_image: ^3.4.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -102,9 +102,9 @@ class _NavigatorPageState extends State<NavigatorPage> {
                                 CameraUpdate.newCameraPosition(
                                     userPosition!));
                           }
-                          await ycontroller.moveCamera(CameraUpdate.zoomTo(16));
                           await ycontroller.toggleUserLayer(
                               visible: true, autoZoomEnabled: true);
+                          await ycontroller.moveCamera(CameraUpdate.zoomTo(14));
                         },
                         icon: Icon(
                           EvaIcons.navigation,
