@@ -1,4 +1,5 @@
 import 'package:autolife/presantation/blocs/main_bloc/auto_scrool_bloc.dart';
+import 'package:autolife/presantation/blocs/main_bloc/auto_scrool_event.dart';
 import 'package:autolife/presantation/blocs/main_bloc/main_bloc.dart';
 import 'package:autolife/presantation/blocs/main_bloc/main_state.dart';
 import 'package:autolife/presantation/widgets/views/view_of_main_page.dart';
@@ -23,6 +24,8 @@ class _MainPageState extends State<MainPage> {
     super.initState();
     mainBloc = context.read<MainBloc>();
     autoScrollBloc=context.read<AutoScrollBloc>();
+    autoScrollBloc.startAutoScroll(context);
+
   }
 
   @override

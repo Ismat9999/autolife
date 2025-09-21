@@ -1,4 +1,5 @@
 import 'package:autolife/presantation/blocs/main_bloc/auto_scrool_bloc.dart';
+import 'package:autolife/presantation/blocs/main_bloc/auto_scrool_event.dart';
 import 'package:autolife/presantation/widgets/items/item_of_auto_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

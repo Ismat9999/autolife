@@ -16,30 +16,30 @@ class AutoScrollBloc extends Bloc<AutoScrollEvent, AutoScrollState> {
   }
 
   void startAutoScroll(BuildContext context) {
-    final itemWidth = MediaQuery.of(context).size.width;
-
     timer?.cancel();
     timer = Timer.periodic(const Duration(seconds: 3), (_) {
-      if (!scrollController.hasClients) return;
+      if (scrollController.hasClients) {
+        final maxScroll = scrollController.position.maxScrollExtent;
+        final currentScroll = scrollController.offset;
+        final itemWidth = MediaQuery.of(context).size.width;
 
-      final maxScroll = scrollController.position.maxScrollExtent;
-      final currentScroll = scrollController.offset;
-
-      if (currentScroll >= maxScroll) {
-        scrollController.animateTo(
-          0,
-          duration: const Duration(milliseconds: 500),
-          curve: Curves.easeInOut,
-        );
-        // emit(const AutoScrollState(0));
-      } else {
-        final nextScroll = currentScroll + itemWidth;
-        scrollController.animateTo(
-          nextScroll,
-          duration: const Duration(milliseconds: 500),
-          curve: Curves.easeInOut,
-        );
-        // emit(AutoScrollState(state.currentIndex + 1));
+        if (currentScroll >= maxScroll) {
+          // reset
+          scrollController.animateTo(
+            0,
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.easeInOut,
+          );
+          add(AutoScrollReset());
+        } else {
+          // next
+          scrollController.animateTo(
+            currentScroll + itemWidth,
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.easeInOut,
+          );
+          add(AutoScrollNext());
+        }
       }
     });
   }
