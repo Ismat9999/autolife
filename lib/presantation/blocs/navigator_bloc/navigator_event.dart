@@ -1,10 +1,6 @@
-import 'package:equatable/equatable.dart';
 
-abstract class NavigatorEvent extends Equatable {
-  const NavigatorEvent();
-}
+abstract class NavigatorSearchEvent {}
 
-class NavigatorSearchEvent extends NavigatorEvent {
-  @override
-  List<Object?> get props => [];
-}
+class NavigatorInit extends NavigatorSearchEvent {}
+
+class NavigatorToggleUserLocation extends NavigatorSearchEvent {}

@@ -1,12 +1,12 @@
-abstract class NavigatSearchState {}
+abstract class NavigatorSearchState {}
 
-class NavigatorInitialState extends NavigatSearchState {}
+class NavigatorInitialState extends NavigatorSearchState {}
 
-class NavigatorLoadingState extends NavigatSearchState {}
+class NavigatorLoadingState extends NavigatorSearchState {}
 
-class NavigatorSuccsesState extends NavigatSearchState {}
+class NavigatorSuccsesState extends NavigatorSearchState {}
 
-class NavigatorFailureState extends NavigatSearchState {
+class NavigatorFailureState extends NavigatorSearchState {
   final String errorMessage;
 
   NavigatorFailureState(this.errorMessage);
