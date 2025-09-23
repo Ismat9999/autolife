@@ -14,21 +14,36 @@ class NavigatorBloc extends Bloc<NavigatorSearchEvent, NavigatorSearchState> {
     on<NavigatorSearchEvent>(_onNavigatorSearchEvent);
   }
 
-  Future<void> _onNavigatorSearchEvent(
-      NavigatorSearchEvent event, Emitter<NavigatorSearchState> emit) async {}
+  Future<void> _onNavigatorSearchEvent(NavigatorSearchEvent event,
+      Emitter<NavigatorSearchState> emit) async {}
 
-  void NavigatorToggleUserLocation(BuildContext context) async {
-    LocationPermission permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      Geolocator.requestPermission();
-    } else if (permission == LocationPermission.deniedForever) {
-      Geolocator.openAppSettings();
-    }
+  void UserLocation(BuildContext context) async {
     CameraPosition? userPosition = await ycontroller.getUserCameraPosition();
     if (userPosition != null) {
-      ycontroller.moveCamera(CameraUpdate.newCameraPosition(userPosition!));
+      ycontroller.moveCamera(CameraUpdate.newCameraPosition(userPosition));
     }
     await ycontroller.toggleUserLayer(visible: true, autoZoomEnabled: true);
     await ycontroller.moveCamera(CameraUpdate.zoomTo(14));
   }
+
+  void cameraPosition(BuildContext context) async {
+    Position position = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high,
+    );
+    final Point userPoint = Point(
+      latitude: position.latitude,
+      longitude: position.longitude,
+    );
+      await ycontroller.moveCamera(
+        CameraUpdate.newCameraPosition(
+          CameraPosition(target: userPoint, zoom: 14),
+        ),
+      );
+      await ycontroller.toggleUserLayer(
+      visible: true,
+      autoZoomEnabled: true,
+        anchor: UserLocationAnchor(normal: Offset(0.5, 0.5), course:Offset(0.5, 0.5)),
+    );
+  }
+
 }

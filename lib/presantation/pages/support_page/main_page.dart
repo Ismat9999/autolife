@@ -33,7 +33,7 @@ class _MainPageState extends State<MainPage> {
     return BlocConsumer<MainBloc, MainState>(
       listener: (context, state) {},
       builder: (context, state) {
-        return viewOfmainPage(context, mainBloc,autoScrollBloc, true);
+        return viewOfMainPage(context, mainBloc,autoScrollBloc, true);
       },
     );
   }

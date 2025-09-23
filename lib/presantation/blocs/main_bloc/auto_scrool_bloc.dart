@@ -1,8 +1,9 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
+import '../../pages/details_page.dart';
 import 'auto_scrool_event.dart';
 import 'auto_scrool_state.dart';
 
@@ -58,4 +59,10 @@ class AutoScrollBloc extends Bloc<AutoScrollEvent, AutoScrollState> {
     scrollController.dispose();
     return super.close();
   }
+void callDetailsPage(BuildContext context) {
+  Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => DetailsPage()));
+}
 }

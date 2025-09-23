@@ -16,20 +16,25 @@ Widget viewOfNavigatorPage(BuildContext context,NavigatorBloc navigatorBloc,bool
           child: YandexMap(
             onMapCreated: (controller) {
               navigatorBloc.ycontroller = controller;
-              navigatorBloc.ycontroller.moveCamera(CameraUpdate.newCameraPosition(CameraPosition(target: Point(latitude: 41.317772,  longitude: 69.230465),zoom: 12)));
+              navigatorBloc.cameraPosition(context);
             },
-            // onUserLocationAdded: (view) async {
-            //   return view.copyWith(
-            //     pin: view.pin.copyWith(
-            //       icon: PlacemarkIcon.single(
-            //         PlacemarkIconStyle(
-            //           image:BitmapDescriptor.fromAssetImage(
-            //               "assets/images/locuser.png"),
-            //         ),
-            //       ),
-            //     ),
-            //   );
-            // },
+            onUserLocationAdded: (view) async {
+              return view.copyWith(
+                accuracyCircle: view.accuracyCircle.copyWith(
+                  fillColor: Colors.transparent,
+                  strokeColor: Colors.transparent,
+                ),
+                pin: view.pin.copyWith(
+                    icon: PlacemarkIcon.single(
+                      PlacemarkIconStyle(
+                        image:BitmapDescriptor.fromAssetImage(
+                            "assets/images/location.png"),scale: 0.5,
+                      ),
+              ),
+
+                ),
+              );
+            },
           ),
         ),
         Container(
@@ -63,7 +68,7 @@ Widget viewOfNavigatorPage(BuildContext context,NavigatorBloc navigatorBloc,bool
                     ),
                     IconButton(
                         onPressed: (){
-                          navigatorBloc.NavigatorToggleUserLocation(context);
+                          navigatorBloc.UserLocation(context);
                         },
                         icon: Icon(
                           EvaIcons.navigation,

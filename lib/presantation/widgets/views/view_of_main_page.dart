@@ -11,7 +11,7 @@ import '../items/item_of_fuel.dart';
 import '../items/item_of_fueling_category.dart';
 import '../items/item_of_parking_category.dart';
 
-Widget viewOfmainPage(BuildContext context, MainBloc mainBloc,
+Widget viewOfMainPage(BuildContext context, MainBloc mainBloc,
     AutoScrollBloc autoscroolBloc, bool isLoading) {
   return Scaffold(
     backgroundColor: Colors.black,
