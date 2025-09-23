@@ -68,7 +68,7 @@ Widget viewOfDetailsPage(BuildContext context) {
                 TextButton(
                     onPressed: () {},
                     child: Text(
-                      "Tel Nomer",
+                      "+998999966696",
                       style: TextStyle(color: Colors.blue),
                     )),
               ],
