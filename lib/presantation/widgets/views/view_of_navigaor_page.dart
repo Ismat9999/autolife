@@ -16,12 +16,11 @@ Widget viewOfNavigatorPage(BuildContext context,NavigatorBloc navigatorBloc,bool
           child: YandexMap(
             onMapCreated: (controller) {
               navigatorBloc.ycontroller = controller;
-              navigatorBloc.cameraPosition(context);
             },
             onUserLocationAdded: (view) async {
               return view.copyWith(
                 accuracyCircle: view.accuracyCircle.copyWith(
-                  fillColor: Colors.transparent,
+                  // fillColor: Colors.transparent,
                   strokeColor: Colors.transparent,
                 ),
                 pin: view.pin.copyWith(

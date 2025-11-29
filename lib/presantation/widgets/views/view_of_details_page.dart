@@ -105,6 +105,7 @@ Widget viewOfDetailsPage(BuildContext context) {
         clipBehavior: Clip.hardEdge,
         child: YandexMap(
           scrollGesturesEnabled: false,
+          zoomGesturesEnabled: false,
           onMapCreated: (YandexMapController mapController) async {
             controller = mapController;
             await controller
